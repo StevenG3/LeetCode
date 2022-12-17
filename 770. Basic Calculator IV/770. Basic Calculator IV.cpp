@@ -118,6 +118,7 @@ public:
 
 class Solution {
 public:
+    // *`Solution: : combine(left, right, symbol)` 返回将 `symbol` 表示的二元运算符应用于 `left` 和 `right` 的结果。
     Poly combine(Poly& left, Poly& right, char symbol) {
         if (symbol == '+') {
             return left.add(right);
@@ -133,6 +134,7 @@ public:
         }
     }
 
+    // * `Solution::make(expr)` 生成一个新的 `Poly`，由 `expr` 指定的常量或自由变量表示。
     Poly make(string expr) {
         Poly ans;
         list<string> k;
@@ -146,6 +148,7 @@ public:
         return ans;
     }
 
+    // * `Solution::parse(expr)` 将表达式解析为新的 `Poly`。
     Poly parse(string expr) {
         vector<Poly> bucket;
         vector<char> symbols;
