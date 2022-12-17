@@ -2,18 +2,18 @@
 #include <map>
 #include <vector>
 #include <string>
-#include <list>
+#include <vector>
 #include <algorithm>
 
 using namespace std;
 
 class Poly {
 private:
-    map<list<string>, int> count;
+    map<vector<string>, int> count;
 public:
     Poly() {}
 
-    void update(list<string> key, int val) {
+    void update(vector<string> key, int val) {
         count[key] += val;
     }
 
@@ -46,14 +46,14 @@ public:
         Poly ans;
         for (auto& m1 : this->count) {
             for (auto& m2 : that.count) {
-                list<string> newKey;
+                vector<string> newKey;
                 for (string s : m1.first) {
                     newKey.push_back(s);
                 }
                 for (string s : m2.first) {
                     newKey.push_back(s);
                 }
-                newKey.sort();
+                sort(newKey.begin(), newKey.end());
                 ans.update(newKey, m1.second * m2.second);
             }
         }
@@ -65,7 +65,7 @@ public:
         Poly ans;
         for (auto& m : this->count) {
             int c = m.second;
-            list<string> k;
+            vector<string> k;
             for (string s : m.first) {
                 if (evalmap.count(s)) {
                     c *= evalmap[s];
@@ -79,10 +79,10 @@ public:
         return ans;
     }
 
-    // * `Poly:toList(this)` 以正确的输出格式返回多项式。
+    // * `Poly:toVector(this)` 以正确的输出格式返回多项式。
     vector<string> toVector() {
         vector<string> ans;
-        vector<list<string>> keys;
+        vector<vector<string>> keys;
         for (auto& m : this->count) {
             if (m.second == 0) {
                 continue;
@@ -90,7 +90,7 @@ public:
             keys.push_back(m.first);
         }
 
-        sort(keys.begin(), keys.end(), [](list<string>& A, list<string>& B) -> bool {
+        sort(keys.begin(), keys.end(), [](vector<string>& A, vector<string>& B) -> bool {
             if (A.size() != B.size()) {
                 return A.size() > B.size();
             }
@@ -104,7 +104,7 @@ public:
             }
             });
 
-        for (list<string>& k : keys) {
+        for (vector<string>& k : keys) {
             string w = to_string(this->count[k]);
             for (string s : k) {
                 w.push_back('*');
@@ -137,7 +137,7 @@ public:
     // * `Solution::make(expr)` 生成一个新的 `Poly`，由 `expr` 指定的常量或自由变量表示。
     Poly make(string expr) {
         Poly ans;
-        list<string> k;
+        vector<string> k;
         if (isdigit(expr[0])) {
             ans.update(k, stoi(expr));
         }
