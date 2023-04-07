@@ -62,3 +62,6 @@ public:
 	}
 };
 ```
+
+https://leetcode.cn/problems/search-insert-position/
+https://leetcode.cn/problems/search-a-2d-matrix/
