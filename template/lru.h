@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-
 class LRUCache {
 public:
-	typedef pair<int, int> PII;
-	typedef list<PII>::iterator IT;
+	typedef std::pair<int, int> PII;
+	typedef std::list<PII>::iterator IT;
 
     LRUCache(int capacity): capacity(capacity) {
 
@@ -36,6 +34,6 @@ public:
     }
 private:
 	int capacity;
-	unordered_map<int, IT> cache;
-	list<PII> lru;
+	std::unordered_map<int, IT> cache;
+	std::list<PII> lru;
 };
